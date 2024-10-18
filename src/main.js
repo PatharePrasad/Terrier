@@ -32,12 +32,9 @@ async function renderOptions() {
   const breedList = await getDogsList();
 
   for (breed of breedList) {
-    // ek option element create karo
     const option = document.createElement("option");
-    option.textContent = breed[0].toUpperCase() + breed.slice(1).toLowerCase
-    // option ke andar breed ka naam likho
-    option.textContent = breed;
-    // select ke andar render karao
+    option.textContent = breed[0].toUpperCase() + breed.slice(1).toLowerCase();
+    option.value = breed;
     selectEl.appendChild(option);
   }
 }
@@ -45,10 +42,11 @@ async function renderOptions() {
 renderOptions();
 
 async function renderCarousel(breed) {
-const images = await getDogImages(breed);
-console.log(images)
+  const images = await getDogImages(breed);
+  console.log(images);
 }
 
-selectEl.addEventListener("change", function(e){
-    renderCarousel(e.target.value)
+// This runs on select change
+selectEl.addEventListener("change", function (e) {
+  renderCarousel(e.target.value);
 });
